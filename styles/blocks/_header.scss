@@ -1,10 +1,32 @@
 @use '../helpers/' as *;
 
 .header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
+    animation-name: scrolling-header;
+    animation-fill-mode: both;
+    animation-timeline: scroll();
+    animation-range: rem(100) rem(200);
+  
+    @keyframes scrolling-header {
+      to {
+        box-shadow: 0 0 1rem 0 var(--color-dark-40);
+      }
+    }
+
     &__promo {
         padding-block: rem(20);
         text-align: center;
         border-bottom: var(--border);
+        background-color: var(--color-dark);
+
+        @include mobile {
+            padding-block: rem(14);
+        }
     }
 
     &__promo-link {
@@ -16,6 +38,10 @@
         padding-block: rem(20);
         background-color: var(--color-dark-10);
         border-bottom: var(--border);
+
+        @include mobile {
+            padding-block: rem(14);
+        }
     }
 
     &__body-inner {
@@ -28,17 +54,53 @@
         @include mobile-above {
           display: contents;
         }
+
+        @include mobile {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            row-gap: 3rem;
+            padding: 1rem;
+            background-color: var(--color-dark-10);
+            transition-duration: var(--transition-duration);
+
+            &:not(.is-active) {
+                @include hide;
+
+                translate: 100%;
+            }
+        }
+    }
+
+    &__menu {
+        overflow-y: auto;
     }
 
     &__menu-list {
         display: flex;
         align-items: center;
-        gap: rem(16);
+        column-gap: rem(16);
+
+        @include laptop {
+            column-gap: rem(6);
+        }
+
+        @include mobile {
+            flex-direction: column;
+            row-gap: 1rem;
+        }
     }
 
     &__menu-link {
         padding: rem(14) rem(24);
         color: var(--color-gray-50);
+
+        @include laptop {
+            padding: rem(10) rem(18);
+        }
 
         &.is-active {
             color: var(--color-light);
@@ -47,6 +109,16 @@
             border-radius: rem(6);
             font-weight: 500;
             pointer-events: none;
+        }
+    }
+
+    &__contact-us-link {
+        @include mobile {
+            width: 100%;
+            max-width: 250px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
