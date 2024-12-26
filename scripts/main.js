@@ -1,3 +1,3 @@
-const url = window.location.href;
+import Header from "./Header.js";
 
-console.log(url);
+new Header();
