@@ -1,0 +1,30 @@
+@use '../helpers/' as *;
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.5rem;
+
+    &::after {
+        --size: #{rem(24)};
+
+        @include square(var(--size));
+
+        content: '';
+        flex-shrink: 0;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        @include mobile {
+            --size: #{rem(16)};
+        }
+
+    }
+
+    &--yellow-arrow {
+        &::after {
+            background-image: url('../../assets/icons/arrow-up.svg');
+        }
+    }
+}
