@@ -1,0 +1,9 @@
+@use '../helpers' as *;
+
+.footer {
+  color: var(--color-dark-40);
+  
+    &__body {
+        border-bottom: var(--border);
+    }
+}
